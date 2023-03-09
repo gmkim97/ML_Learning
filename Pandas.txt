@@ -1,0 +1,121 @@
+# What is Pandas?
+
+- open source library built on Numpy
+
+- for analysis and data cleaning
+
+- has built-in visualization features
+
+
+# Series
+
+- Similar to numpy array
+
+- Difference : access on "label"
+
+- Can specify on index
+	ex) can change the index by your own label
+
+- can have array, dictionary as data value of Series
+	ex) dictionary / keys -> labels & value -> data values
+
+- can have built-in function as data of Series => Flexibility for several datatype
+
+- How to approach the data
+	= series[<index_name>]
+
+
+# DataFrame
+
+- Main tool for Pandas
+
+- Bunch of Series, multiple columns
+
+- selecting column
+	= df[<name_column>]
+	= df[[<column_1>,<column_2>,...]]
+
+- creating new column
+	= df[<new_name_column>] = ## Your expression (Arithmetic, assignments, ...etc)
+
+- deleting column
+	= df.drop(<name_column>, axis = ..., inplace = ...)
+	= axis = 0 => index (row)
+	= axis = 1 => column
+	= inplace = True => permanently drop
+
+- selecting row
+	(1) df.loc[<name_row>]
+	(2) df.iloc[<integer_row>]
+
+- selecting subset
+	(1) df.loc[<name_row>,<name_column>]
+	df.loc[[<name_row_1>,<name_row_2>,...],[<name_col_1>,<name_col_2>,...]]
+
+- conditional selection (Important!!!)
+	= df[df[<name_column>] > 0]
+
+- multiple condition (Important!!!)
+	= Use operator "&", not "and"
+
+- reset the index
+	= df.reset_index()
+	= Here, the index will insert into new column
+
+- set the index
+	= df.set_index()
+	= override your old index
+
+- multi-DataFrame
+	= outside / inside index
+
+- cross section function
+	= df.xs(<inside_index>, level=...)
+	= getting subset of data. Quite similar to loc function
+
+- drop the row / col with null value
+	= df.dropna(axis=... , thresh= <# of NaN>)
+
+- fill the row / col with null value
+	= df.fillna(value=...)
+
+## Groupby
+
+- allows to group together based on column and perform an aggregate function on them
+- df.groupby(<name_col>)
+- mean() / sum() / std()
+- df.groupby().describe() => summarize the result of quite entire operations (min, max, mean ...)
+
+## Concatenation
+
+- pd.concat(... , axis=...)
+
+## Merging
+
+- Glue based on key
+- pd.merge(<dataframe_1>,<dataframe_2>, how=... , on=<key>)
+
+## Joining
+
+- combining the columns of two potentially dfferently-indexed DataFrames in to a single result
+- <DataFrame_1>.join(<DataFrame_2>
+
+## Operations
+
+- df[<col_name>].unique() => output is numpy array
+- df[<col_name>].nunique()
+- df[<col_name>].value_counts()
+- df[<col_name>].apply(<name_function>) (Important!!!)
+- df.columns
+- df.index
+- df.sort_values(by=<name_col>)
+- df.isnull()
+- df.pivot_table(values=... , index=... , columns=...)
+
+## Built-in Data Visualization
+
+- Histogram : df[].hist()
+- df[].plot(kind=...) 
+	=> kind can be hist, line, area, scatter... etc
+	=> Check out the following link for more parameters
+	=> https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.plot.html
